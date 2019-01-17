@@ -1,0 +1,8 @@
+{;; ClojureScript hot reloading configuration
+ :watch-dirs ["src/cljs"]
+
+ ;; CSS files location to watch for changes
+ :css-dirs ["resources/public/css"]
+
+ ;; Start the backend server as well
+ :ring-handler collector.handler/collector-dev}

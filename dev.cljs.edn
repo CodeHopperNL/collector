@@ -1,0 +1,2 @@
+;; Hot reloading configuration
+{:main collector.client}

@@ -1,0 +1,7 @@
+;; Production-level ClojureScript build
+{:main          "collector.client"
+ :output-dir    "target/public/cljs-out"
+ :output-to     "target/public/cljs-out/app.js"
+ :source-map    "target/public/cljs-out/app.js.map"
+ :optimizations :advanced
+ :pretty-print  false}
