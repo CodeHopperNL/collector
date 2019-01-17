@@ -14,14 +14,14 @@
         org.clojure/tools.logging {:mvn/version "0.4.1"}    ; good old logging
 
         ;; server
-        ring                      {:mvn/version "1.7.0"} ; HTTP support
-        ring/ring-defaults        {:mvn/version "0.3.2"} ; default middleware
-        prone                     {:mvn/version "1.6.1"} ; beautify stacktraces
-        compojure                 {:mvn/version "1.6.1"} ; server-side HTTP routing
-        hiccup                    {:mvn/version "1.0.5"} ; server-side HTML rendering
-        yogthos/config            {:mvn/version "1.1.1"} ; env-based configuration
-        integrant                 {:mvn/version "0.7.0"} ; server state management and lifecycle
-        integrant/repl            {:mvn/version "0.3.1"} ; some REPL-friendly tools for integrant
+        ring               {:mvn/version "1.7.0"} ; HTTP support
+        ring/ring-defaults {:mvn/version "0.3.2"} ; default middleware
+        prone              {:mvn/version "1.6.1"} ; beautify stacktraces
+        compojure          {:mvn/version "1.6.1"} ; server-side HTTP routing
+        hiccup             {:mvn/version "1.0.5"} ; server-side HTML rendering
+        yogthos/config     {:mvn/version "1.1.1"} ; env-based configuration
+        integrant          {:mvn/version "0.7.0"} ; server state management and lifecycle
+        integrant/repl     {:mvn/version "0.3.1"} ; some REPL-friendly tools for integrant
 
         ;; logging
         log4j                   {:mvn/version "1.2.16"}
@@ -34,23 +34,29 @@
         ragtime                   {:mvn/version "0.8.0"}  ; manage DB schema migrations
 
         ;; frontend
-        reagent                   {:mvn/version "0.8.1"}} ; redux-like React wrapper
+        reagent {:mvn/version "0.8.1"}} ; redux-like React wrapper
 
  ;;
  ;; Command line shortcuts
  ;;
 
  :aliases {;; run the server without hot-reloading
-           :run        {:main-opts ["-m" "collector.server"]}
+           :run {:main-opts ["-m" "collector.server"]}
 
            ;; compile the javascript file
-           :cljsbuild  {:main-opts ["-m" "cljs.main" "-co" "cljsbuild.edn" "-c"]}
+           :cljsbuild {:main-opts ["-m" "cljs.main" "-co" "cljsbuild.edn" "-c"]}
 
            ;; start the server with hot reloading (both frontend and backend)
-           :figwheel   {:extra-deps {org.clojure/tools.nrepl         {:mvn/version "0.2.13"}
-                                     cider/cider-nrepl               {:mvn/version "0.19.0"}
-                                     com.cemerick/piggieback         {:mvn/version "0.2.2"}
-                                     com.bhauman/figwheel-main       {:mvn/version "0.2.0"}
-                                     com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}}
-                        :extra-paths ["dev/clj" "target"]
-                        :main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}}}
+           :figwheel {:extra-deps {;; Emacs / CIDER configuration
+                                   org.clojure/tools.nrepl {:mvn/version "0.2.13"}
+                                   cider/cider-nrepl       {:mvn/version "0.19.0"}
+                                   cider/piggieback        {:mvn/version "0.3.8"}
+
+                                   ;; Hot reload and browser repl config
+                                   com.bhauman/figwheel-main       {:mvn/version "0.2.0"}
+                                   com.bhauman/rebel-readline      {:mvn/version "0.1.4"}
+                                   com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}}
+                      :extra-paths ["dev/clj" "target"]
+                      :main-opts   ["-m" "collector.repl"]
+                      ;;:main-opts   ["-m" "figwheel.main" "-b" "dev" "-r"]
+                      }}}
